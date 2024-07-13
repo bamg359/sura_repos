@@ -31,7 +31,8 @@ class Category:
     def create_category(self):
         self._category_id = int(input("id"))
         self._category_name = input("Nombre categoria")
-        self.categories[self._category_id] = {"id_categoria": self._category_id , "Nombre Categoria": self._category_name}
+        #self.categories[self._category_id] = { "Nombre Categoria": self._category_name}
+        self.categories[self._category_id] = self._category_id , self._category_name
 
 
     def list_categories(self):

@@ -35,7 +35,8 @@ class Product:
         self.price = float(input("Precio"))
         self.quantity = int(input("Cantidad"))
         self.brand = input("Marca")
-        self.products[self.product_id] = {"id": self.product_id , "Nombre" :  self.product_name , "Categoria": self.category , "Decripcion": self.description, "Precio": self.price, "Cantidad": self.quantity, "Marca": self.brand}
+        #self.products[self.product_id] = {"id": self.product_id , "Nombre" :  self.product_name , "Categoria": self.category , "Decripcion": self.description, "Precio": self.price, "Cantidad": self.quantity, "Marca": self.brand}
+        self.products[self.product_id] = self.product_id, self.product_name,self.category,self.description,self.price,self.quantity,self.brand
 
 
 
@@ -46,7 +47,7 @@ class Product:
 
     def find_category(self,category):
         category_id = int(input("Categoria"))
-        category_list = category.categories.get(category_id)
+        category_list = category.categories.get(category_id)[1]
         self.category = category_list
         print(self.category)
         #value = input("Nombre categoria")
