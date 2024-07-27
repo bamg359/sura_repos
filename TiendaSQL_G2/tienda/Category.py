@@ -54,7 +54,10 @@ class Category:
         params = (category_name,)
         db.execute_query(query, params)
 
-    def select_category(self, db):
+
+    @staticmethod
+    @app.get('/get_categpry/', tags= ["Listar Categorias"])
+    def select_category():
         query = "SELECT * FROM category"
         result = db.execute_query(query)
         if result:
@@ -68,16 +71,18 @@ class Category:
             print("Categorias no encontradas")
             return []
 
-
-    def delete_category(self, db , category_id):
+    @app.delete('/delete_category/', tags=["Delete_category"])
+    def delete_category(category_id:int = Body()):
         query = "DELETE FROM category WHERE category_id = %s"
         db.execute_query(query, (category_id,))
 
 
-    def update_category(self, db):
-        self._category_name = input("Ingrese el nuevo nombre de la categoria")
-        query = "UPDATE category SET category_name = %s"
-        values = (self._category_name,)
+
+    @app.put('/update_category/{category_id, category_name}', tags=["Actualizar Categoria"])
+    def update_category(category_id:int= Body(), category_name:str = Body()):
+        #self._category_name = input("Ingrese el nuevo nombre de la categoria")
+        query = "UPDATE category SET category_name = %s WHERE category_id = %s"
+        values = (category_name, category_id)
         db.execute_query(query, values)
 
 
